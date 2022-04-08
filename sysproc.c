@@ -77,6 +77,19 @@ sys_sleep(void)
   return 0;
 }
 
+// return how many clock tick interrupts have occurred
+// since start.
+int
+sys_uptime(void)
+{
+  uint xticks;
+
+  acquire(&tickslock);
+  xticks = ticks;
+  release(&tickslock);
+  return xticks;
+}
+
 
 int
 sys_mprotect(void) {
@@ -101,17 +114,5 @@ sys_munprotect(void) {
     if ((uint)addr % PGSIZE != 0 || len <= 0 || (uint)addr < PGSIZE)
       return -1;
 
-    return munprotect(addr, len);
-}
-// return how many clock tick interrupts have occurred
-// since start.
-int
-sys_uptime(void)
-{
-  uint xticks;
-
-  acquire(&tickslock);
-  xticks = ticks;
-  release(&tickslock);
-  return xticks;
+   return munprotect(addr, len);
 }
