@@ -155,6 +155,9 @@ int             argstr(int, char**);
 int             fetchint(uint, int*);
 int             fetchstr(uint, char**);
 void            syscall(void);
+int             mprotect(void *, int)
+int             mprotect(void *, int)
+
 
 // timer.c
 void            timerinit(void);
