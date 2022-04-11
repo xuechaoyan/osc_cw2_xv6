@@ -10,11 +10,11 @@ main(int argc, char *argv[])
   char * x = sbrk(0);
   sbrk(PGSIZE);
   *x = 200;
-  mprotect(x, 1) ;
+  mprotect(x, 2) ;
   int y = fork();
   if(y == 0){
     printf(1, "Protected the value: %d \n", *x);
-    munprotect(x, 1);
+    munprotect(x, 2);
     *x = 10;
     printf(1, "Unprotecting it: %d \n", *x);
     exit();

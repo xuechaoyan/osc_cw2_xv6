@@ -395,45 +395,75 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
 
 int
 mprotect(void *addr, int len) {
-   struct proc *curproc = myproc();
-   if ((uint)addr >= curproc->vlimit || (uint)addr + len >= curproc->vlimit)
-     return -1;
-
-   char *a, *last;
+  //initial a process
+   struct proc *tempproc = myproc();
+   char *c;
+   char *final;
    pte_t *pte;
-   a = (char *)PGROUNDDOWN((uint)addr);
-   last = (char *)PGROUNDDOWN(((uint)addr) + len - 1);
-   for (;;) {
-     if ((pte = walkpgdir(curproc->pgdir, a, 0)) == 0)
-       return -1;
-     *pte &= ~PTE_W;
-     if (a >= last)
-       break;
-     a += PGSIZE;
+   c = (char *)PGROUNDDOWN((uint)addr);
+   final = (char *)PGROUNDDOWN(((uint)addr) + len - 1);
+   //check the validation of import length, if it is wrong return -1
+   if(len * PGSIZE +(int)addr > tempproc->vlimit || len <= 0){
+     cprintf("Error in Length \n");
+     return -1;
    }
-   lcr3(V2P(curproc->pgdir)); // update page flag
+   //check the validation of address, if it is wrong return -1
+   if((int)(((int) addr) % PGSIZE ) != 0){
+     cprintf("Error in Address: %p \n", addr);
+     return -1;
+   }
+   //use infinite loop
+   while(1){
+     pte = walkpgdir(tempproc->pgdir, c, 0);
+     //when the page table equal 0, return -1
+     if (pte == 0){
+       return -1;
+     }
+     *pte &= ~PTE_W;
+     //when the c equal or larger than final break loop
+     if (c >= final){
+       break;
+     }
+     c += PGSIZE;
+   }
+   //change the page flag
+   lcr3(V2P(tempproc->pgdir));
    return 0;
 }
 
 int
 munprotect(void *addr, int len) {
-   struct proc *curproc = myproc();
-   if ((uint)addr >= curproc->vlimit || (uint)addr + len >= curproc->vlimit)
-     return -1;
-
-   char *a, *last;
+  //initial a process
+   struct proc *tempproc = myproc();
+   char *c;
+   char *final;
    pte_t *pte;
-   a = (char *)PGROUNDDOWN((uint)addr);
-   last = (char *)PGROUNDDOWN(((uint)addr) + len - 1);
-   for (;;) {
-     if ((pte = walkpgdir(curproc->pgdir, a, 0)) == 0)
-       return -1;
-     *pte |= PTE_W;
-     if (a >= last)
-       break;
-     a += PGSIZE;
+   c = (char *)PGROUNDDOWN((uint)addr);
+   final = (char *)PGROUNDDOWN(((uint)addr) + len - 1);
+   //check the validation of import length, if it is wrong return -1
+   if(len * PGSIZE +(int)addr > tempproc->vlimit || len <= 0){
+     cprintf("Error in Length \n");
+     return -1;
    }
-   lcr3(V2P(curproc->pgdir)); // update page flag
+   //check the validation of address, if it is wrong return -1
+   if((int)(((int) addr) % PGSIZE ) != 0){
+     cprintf("Error in Address: %p \n", addr);
+     return -1;
+   }
+   //similar with mprotect
+   while(1) {
+     pte = walkpgdir(tempproc->pgdir, c, 0);
+     if (pte == 0){
+       return -1;
+     }
+     *pte |= PTE_W;
+     if (c >= final){
+       break;
+     }
+     c += PGSIZE;
+   }
+   //change the page flag
+   lcr3(V2P(tempproc->pgdir));
    return 0;
 }
 //PAGEBREAK!
