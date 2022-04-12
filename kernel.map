@@ -919,7 +919,7 @@ LOAD initcode
 LOAD entryother
 OUTPUT(kernel elf32-i386)
 
-.debug_line     0x0000000000000000     0x6ef0
+.debug_line     0x0000000000000000     0x6f18
  .debug_line    0x0000000000000000       0x41 entry.o
  .debug_line    0x0000000000000041      0x286 bio.o
  .debug_line    0x00000000000002c7      0x8fd console.o
@@ -943,14 +943,14 @@ OUTPUT(kernel elf32-i386)
  .debug_line    0x0000000000004f01       0x43 swtch.o
  .debug_line    0x0000000000004f44      0x249 syscall.o
  .debug_line    0x000000000000518d      0x8f2 sysfile.o
- .debug_line    0x0000000000005a7f      0x223 sysproc.o
- .debug_line    0x0000000000005ca2       0x48 trapasm.o
- .debug_line    0x0000000000005cea      0x2c3 trap.o
- .debug_line    0x0000000000005fad      0x290 uart.o
- .debug_line    0x000000000000623d      0x32f vectors.o
- .debug_line    0x000000000000656c      0x984 vm.o
+ .debug_line    0x0000000000005a7f      0x24b sysproc.o
+ .debug_line    0x0000000000005cca       0x48 trapasm.o
+ .debug_line    0x0000000000005d12      0x2c3 trap.o
+ .debug_line    0x0000000000005fd5      0x290 uart.o
+ .debug_line    0x0000000000006265      0x32f vectors.o
+ .debug_line    0x0000000000006594      0x984 vm.o
 
-.debug_info     0x0000000000000000    0x1253f
+.debug_info     0x0000000000000000    0x12563
  .debug_info    0x0000000000000000       0x26 entry.o
  .debug_info    0x0000000000000026      0x473 bio.o
  .debug_info    0x0000000000000499     0x1488 console.o
@@ -974,14 +974,14 @@ OUTPUT(kernel elf32-i386)
  .debug_info    0x000000000000c91f       0x26 swtch.o
  .debug_info    0x000000000000c945      0x9b4 syscall.o
  .debug_info    0x000000000000d2f9     0x1698 sysfile.o
- .debug_info    0x000000000000e991      0xa3c sysproc.o
- .debug_info    0x000000000000f3cd       0x26 trapasm.o
- .debug_info    0x000000000000f3f3      0xbe2 trap.o
- .debug_info    0x000000000000ffd5      0xdce uart.o
- .debug_info    0x0000000000010da3       0x26 vectors.o
- .debug_info    0x0000000000010dc9     0x1776 vm.o
+ .debug_info    0x000000000000e991      0xa60 sysproc.o
+ .debug_info    0x000000000000f3f1       0x26 trapasm.o
+ .debug_info    0x000000000000f417      0xbe2 trap.o
+ .debug_info    0x000000000000fff9      0xdce uart.o
+ .debug_info    0x0000000000010dc7       0x26 vectors.o
+ .debug_info    0x0000000000010ded     0x1776 vm.o
 
-.debug_abbrev   0x0000000000000000     0x3f6f
+.debug_abbrev   0x0000000000000000     0x3f83
  .debug_abbrev  0x0000000000000000       0x14 entry.o
  .debug_abbrev  0x0000000000000014      0x21e bio.o
  .debug_abbrev  0x0000000000000232      0x485 console.o
@@ -1005,12 +1005,12 @@ OUTPUT(kernel elf32-i386)
  .debug_abbrev  0x0000000000002ed0       0x14 swtch.o
  .debug_abbrev  0x0000000000002ee4      0x1fd syscall.o
  .debug_abbrev  0x00000000000030e1      0x344 sysfile.o
- .debug_abbrev  0x0000000000003425      0x18e sysproc.o
- .debug_abbrev  0x00000000000035b3       0x14 trapasm.o
- .debug_abbrev  0x00000000000035c7      0x24b trap.o
- .debug_abbrev  0x0000000000003812      0x2c2 uart.o
- .debug_abbrev  0x0000000000003ad4       0x14 vectors.o
- .debug_abbrev  0x0000000000003ae8      0x487 vm.o
+ .debug_abbrev  0x0000000000003425      0x1a2 sysproc.o
+ .debug_abbrev  0x00000000000035c7       0x14 trapasm.o
+ .debug_abbrev  0x00000000000035db      0x24b trap.o
+ .debug_abbrev  0x0000000000003826      0x2c2 uart.o
+ .debug_abbrev  0x0000000000003ae8       0x14 vectors.o
+ .debug_abbrev  0x0000000000003afc      0x487 vm.o
 
 .debug_aranges  0x0000000000000000      0x3a8
  .debug_aranges
@@ -1131,7 +1131,7 @@ OUTPUT(kernel elf32-i386)
  .debug_str     0x0000000000000e5c       0x82 vm.o
                                         0x491 (size before relaxing)
 
-.debug_loc      0x0000000000000000     0x6a9b
+.debug_loc      0x0000000000000000     0x6ac5
  .debug_loc     0x0000000000000000      0x126 bio.o
  .debug_loc     0x0000000000000126      0xaf9 console.o
  .debug_loc     0x0000000000000c1f      0x338 exec.o
@@ -1153,10 +1153,10 @@ OUTPUT(kernel elf32-i386)
  .debug_loc     0x00000000000047d6      0x6b5 string.o
  .debug_loc     0x0000000000004e8b      0x145 syscall.o
  .debug_loc     0x0000000000004fd0      0x736 sysfile.o
- .debug_loc     0x0000000000005706       0x59 sysproc.o
- .debug_loc     0x000000000000575f       0x7f trap.o
- .debug_loc     0x00000000000057de      0x344 uart.o
- .debug_loc     0x0000000000005b22      0xf79 vm.o
+ .debug_loc     0x0000000000005706       0x83 sysproc.o
+ .debug_loc     0x0000000000005789       0x7f trap.o
+ .debug_loc     0x0000000000005808      0x344 uart.o
+ .debug_loc     0x0000000000005b4c      0xf79 vm.o
 
 .debug_ranges   0x0000000000000000      0xd18
  .debug_ranges  0x0000000000000000       0x18 bio.o

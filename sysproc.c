@@ -95,13 +95,14 @@ int
 sys_mprotect(void) {
     void *addr;
     int len;
-
-    if (argptr(0, (char **)&addr, sizeof(void *)) || argint(1, &len) < 0)
+    int i =  argptr(0, (char **)&addr, sizeof(void *));
+    //check pointer lies is with in address space and the validation of lens
+    if ( i < 0 || argint(1, &len) < 0 || len <= 0 || (uint)addr < PGSIZE || (uint)addr % PGSIZE != 0){
       return -1;
-    if ((uint)addr % PGSIZE != 0 || len <= 0 || (uint)addr < PGSIZE)
-      return -1;
+    }
 
     return mprotect(addr, len);
+
 }
 
 
@@ -109,11 +110,11 @@ int
 sys_munprotect(void) {
     void *addr;
     int len;
-
-    if (argptr(0, (char **)&addr, sizeof(void *)) || argint(1, &len) < 0)
+    int i =  argptr(0, (char **)&addr, sizeof(void *));
+    //check pointer lies is with in address space and the validation of lens
+    if ( i < 0 || argint(1, &len) < 0 || len <= 0 || (uint)addr < PGSIZE || (uint)addr % PGSIZE != 0){
       return -1;
-    if ((uint)addr % PGSIZE != 0 || len <= 0 || (uint)addr < PGSIZE)
-      return -1;
+    }
 
    return munprotect(addr, len);
 }
