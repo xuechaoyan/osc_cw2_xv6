@@ -54,6 +54,8 @@ main(int argc, char *argv[])
   i = mprotect((void*)b, 1);
   printf(1, "worked mprotect\n");
   printf(1, "%d\n", i);
+  printf(1, "overwrite\n");
+  *b = 100;
 
 
   // test case 6
@@ -63,6 +65,8 @@ main(int argc, char *argv[])
   i = munprotect((void*)b, 1);
   printf(1, "worked for munprotect\n");
   printf(1, "%d\n", i);
+  printf(1, "overwrite\n");
+  *b = 200;
 
   exit();
 }
